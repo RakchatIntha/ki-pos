@@ -82,6 +82,7 @@ function init() {
             POS.Router.register('/checkout', POS.CheckoutScreen);
             POS.Router.register('/receipt', POS.ReceiptScreen);
             POS.Router.register('/kitchen', POS.KitchenScreen);
+            POS.Router.register('/menu-manage', POS.MenuManageScreen);
             console.log('[POS] Routes registered');
 
             // Start sync service (if online)

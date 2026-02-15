@@ -181,7 +181,7 @@ window.POS = window.POS || {};
 
         getMenuItems: function() {
             return cache.menuItems
-                .filter(function(item) { return item.is_active === true || item.is_active === 'TRUE' || item.is_active === 1; })
+                .filter(function(item) { return item.is_active === true || item.is_active === 'TRUE' || item.is_active === 'true' || item.is_active === 1; })
                 .sort(function(a, b) {
                     if (a.sort_group !== b.sort_group) return a.sort_group - b.sort_group;
                     return a.sort_order - b.sort_order;

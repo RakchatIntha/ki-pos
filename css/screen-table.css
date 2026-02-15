@@ -9,11 +9,25 @@
     overflow-y: auto;
 }
 
+.table-screen__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+    width: 100%;
+    max-width: 900px;
+}
+
 .table-screen__title {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
-    margin-bottom: var(--space-2xl);
+}
+
+.table-screen__menu-btn {
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
 }
 
 /* === Table Grid (4 columns x 3 rows) === */

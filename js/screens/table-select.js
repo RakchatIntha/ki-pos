@@ -30,8 +30,23 @@ window.POS = window.POS || {};
         var tableCount = DS.getTableCount();
 
         var wrapper = el('div', 'table-screen');
+
+        var titleRow = el('div', 'table-screen__title-row');
         var title = el('h2', 'table-screen__title', '\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E42\u0E15\u0E4A\u0E30');
-        wrapper.appendChild(title);
+        titleRow.appendChild(title);
+
+        // "จัดการเมนู" button — only show for FRONT role
+        var role = POS.RoleService ? POS.RoleService.getCurrentRole() : null;
+        if (role === 'FRONT') {
+            var menuBtn = el('button', 'btn-outline table-screen__menu-btn', '\u2699 \u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E40\u0E21\u0E19\u0E39');
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                POS.Router.navigate('/menu-manage');
+            });
+            titleRow.appendChild(menuBtn);
+        }
+
+        wrapper.appendChild(titleRow);
 
         var grid = el('div', 'table-grid');
 
