@@ -10,7 +10,7 @@
  */
 
 // ==================== CONFIG ====================
-var SPREADSHEET_ID = ''; // <-- ใส่ ID ของ Google Sheets ที่นี่
+var SPREADSHEET_ID = '1pTaPgwoJNcHVSKideXewlDAR5QgKKRhSNRe-RlHs5Uo';
 
 function getSpreadsheet() {
   if (SPREADSHEET_ID) {
