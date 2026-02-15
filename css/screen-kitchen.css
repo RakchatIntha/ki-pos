@@ -1,0 +1,277 @@
+/* === Kitchen Display Screen === */
+
+.kitchen-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+}
+
+/* === Toolbar === */
+
+.kitchen-toolbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-xl);
+    background: var(--color-surface);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.kitchen-toolbar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.kitchen-toolbar__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+}
+
+.kitchen-badge {
+    background: var(--color-danger);
+    color: white;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.kitchen-toolbar__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.kitchen-toggle-btn {
+    background: var(--color-surface-alt);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-sm);
+}
+
+/* === Order Cards Grid === */
+
+.kitchen-orders {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-lg);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    align-content: start;
+}
+
+/* === Empty State === */
+
+.kitchen-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3xl);
+    color: var(--color-text-muted);
+}
+
+.kitchen-empty__icon {
+    font-size: 64px;
+    margin-bottom: var(--space-lg);
+}
+
+.kitchen-empty__text {
+    font-size: var(--font-size-xl);
+}
+
+/* === Per-Table View Header === */
+
+.kitchen-table-header {
+    grid-column: 1 / -1;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    padding: var(--space-sm) 0;
+    margin-top: var(--space-md);
+    border-bottom: 3px solid var(--color-primary);
+    color: var(--color-primary-dark);
+}
+
+.kitchen-table-header:first-child {
+    margin-top: 0;
+}
+
+/* === Order Card === */
+
+.kitchen-order-card {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 6px solid var(--color-danger);
+    overflow: hidden;
+}
+
+.kitchen-order-card--open {
+    border-left-color: var(--color-danger);
+}
+
+.kitchen-order-card--cooking {
+    border-left-color: var(--color-warning);
+}
+
+.kitchen-order-card--ready {
+    border-left-color: var(--color-success);
+    background: var(--color-success-light);
+}
+
+.kitchen-order-card--served {
+    border-left-color: var(--color-secondary);
+    opacity: 0.7;
+}
+
+/* Card Header */
+
+.kitchen-order-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-surface-alt);
+    border-bottom: 1px solid var(--color-border-light);
+    gap: var(--space-sm);
+}
+
+.kitchen-order-card__table {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
+
+.kitchen-order-card__time {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* Status Badge */
+
+.kitchen-status-badge {
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+}
+
+.kitchen-status-badge--open {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+.kitchen-status-badge--cooking {
+    background: var(--color-warning-light);
+    color: var(--color-warning);
+}
+
+.kitchen-status-badge--ready {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.kitchen-status-badge--served {
+    background: #E8EFF5;
+    color: var(--color-secondary);
+}
+
+/* === Line Items === */
+
+.kitchen-order-card__lines {
+    padding: 0;
+}
+
+.kitchen-line-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--color-border-light);
+    min-height: 56px;
+}
+
+.kitchen-line-item:last-child {
+    border-bottom: none;
+}
+
+.kitchen-line-item--done {
+    opacity: 0.5;
+    background: var(--color-success-light);
+}
+
+.kitchen-line-item--done .kitchen-line-item__name {
+    text-decoration: line-through;
+}
+
+.kitchen-line-item__info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex: 1;
+}
+
+.kitchen-line-item__name {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+}
+
+.kitchen-line-item__qty {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-bold);
+    background: var(--color-surface-alt);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+}
+
+/* Done Button */
+
+.kitchen-done-btn {
+    min-width: 80px;
+    min-height: var(--touch-min-size);
+    background: var(--color-success);
+    color: white;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+}
+
+.kitchen-done-btn:active {
+    background: #219A52;
+    transform: scale(0.95);
+}
+
+.kitchen-done-label {
+    font-size: var(--font-size-lg);
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Serve Button */
+
+.kitchen-serve-btn {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-secondary);
+    color: white;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    border: none;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    cursor: pointer;
+    min-height: 48px;
+}
+
+.kitchen-serve-btn:active {
+    background: var(--color-secondary-light);
+}

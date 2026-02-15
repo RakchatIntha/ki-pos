@@ -1,0 +1,78 @@
+:root {
+    /* === Colors — Thai restaurant warm gold/green theme === */
+    --color-primary: #D4A03C;
+    --color-primary-dark: #B8891F;
+    --color-primary-light: #F0D68A;
+    --color-secondary: #2D5016;
+    --color-secondary-light: #4A7A2E;
+    --color-accent: #C0392B;
+
+    --color-bg: #F5F0E8;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #FDF8F0;
+
+    --color-text: #2C2C2C;
+    --color-text-secondary: #666666;
+    --color-text-muted: #999999;
+    --color-text-on-primary: #FFFFFF;
+    --color-text-on-secondary: #FFFFFF;
+
+    --color-success: #27AE60;
+    --color-success-light: #E8F8EF;
+    --color-warning: #F39C12;
+    --color-warning-light: #FEF5E7;
+    --color-danger: #E74C3C;
+    --color-danger-light: #FDEDEC;
+
+    --color-border: #E0D5C5;
+    --color-border-light: #F0EBE3;
+    --color-divider: #EDE8E0;
+
+    /* === Typography === */
+    --font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 40px;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* === Spacing === */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+
+    /* === Layout === */
+    --header-height: 56px;
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
+
+    /* === Touch targets (Apple HIG: 44px minimum) === */
+    --touch-min-size: 44px;
+    --button-height: 48px;
+    --button-height-lg: 56px;
+
+    /* === Shadows === */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+    /* === Transitions === */
+    --transition-fast: 0.1s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+}

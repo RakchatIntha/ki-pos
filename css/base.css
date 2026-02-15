@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+/* === Typography === */
+h1 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); }
+h2 { font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); }
+h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); }
+
+/* === Touch-friendly buttons === */
+button {
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    min-height: var(--touch-min-size);
+    min-width: var(--touch-min-size);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform var(--transition-fast), background-color var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    line-height: 1;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* === Scrollbar styling === */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+/* === Utility classes === */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--color-text-secondary); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-bold { font-weight: var(--font-weight-bold); }
+.text-success { color: var(--color-success); }
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+
+.hidden { display: none !important; }
+.no-print { /* Used in print.css */ }

@@ -1,0 +1,172 @@
+/* === Receipt Screen === */
+
+.receipt-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--space-xl);
+    gap: var(--space-xl);
+    background: var(--color-bg);
+}
+
+/* Receipt container (looks like a paper receipt) */
+.receipt-container {
+    background: var(--color-surface);
+    width: 400px;
+    max-width: 100%;
+    padding: var(--space-2xl) var(--space-xl);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-size-sm);
+}
+
+/* Receipt header */
+.receipt-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.receipt-shop-name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-xs);
+}
+
+.receipt-shop-info {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.receipt-no {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--space-sm);
+}
+
+.receipt-meta {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Divider */
+.receipt-divider {
+    border-top: 1px dashed var(--color-border);
+    margin: var(--space-md) 0;
+}
+
+/* Item rows */
+.receipt-items {
+    margin-bottom: var(--space-sm);
+}
+
+.receipt-item-row {
+    display: grid;
+    grid-template-columns: 1fr 40px 60px 70px;
+    gap: var(--space-xs);
+    padding: var(--space-xs) 0;
+    align-items: center;
+}
+
+.receipt-item-row--header {
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.receipt-col-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.receipt-col-qty {
+    text-align: center;
+}
+
+.receipt-col-price {
+    text-align: right;
+}
+
+.receipt-col-total {
+    text-align: right;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Totals */
+.receipt-totals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.receipt-total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-xs) 0;
+}
+
+.receipt-total-row--grand {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-xs);
+}
+
+.receipt-total-row--grand .receipt-total-row__value {
+    color: var(--color-primary-dark);
+}
+
+/* Footer */
+.receipt-footer {
+    text-align: center;
+}
+
+.receipt-thank-you {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+}
+
+.receipt-print-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+}
+
+/* Action buttons */
+.receipt-actions {
+    display: flex;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-xl);
+}
+
+.btn-print {
+    height: var(--button-height-lg);
+    padding: 0 var(--space-3xl);
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--border-radius);
+}
+
+.btn-print:active {
+    background: var(--color-primary-dark);
+}
+
+.btn-home {
+    height: var(--button-height-lg);
+    padding: 0 var(--space-3xl);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
