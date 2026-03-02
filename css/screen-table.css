@@ -150,3 +150,40 @@
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
 }
+
+/* === Portrait / Small screen === */
+@media screen and (max-width: 600px), screen and (orientation: portrait) {
+    .table-screen {
+        padding: var(--space-lg);
+    }
+
+    .table-screen__title-row {
+        flex-direction: column;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+
+    .table-screen__title {
+        font-size: var(--font-size-xl);
+    }
+
+    .table-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+    }
+
+    .table-card {
+        min-height: 100px;
+        padding: var(--space-md) var(--space-sm);
+    }
+
+    .table-card__number {
+        font-size: var(--font-size-lg);
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .table-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

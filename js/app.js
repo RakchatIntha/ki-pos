@@ -69,6 +69,10 @@ POS.updateHeaderRole = updateHeaderRole;
 
 function init() {
     try {
+        // ซ่อน rotate-prompt — รองรับทั้งแนวตั้งและแนวนอน
+        var rotateEl = document.getElementById('rotate-prompt');
+        if (rotateEl) rotateEl.style.display = 'none';
+
         showLoading();
         console.log('[POS] Starting initialization...');
 

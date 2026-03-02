@@ -209,6 +209,95 @@ window.POS = window.POS || {};
             return cache.menuItems.find(function(item) { return item.menu_id === menuId; }) || null;
         },
 
+        /**
+         * ดึงเมนูทั้งหมด (รวม inactive) สำหรับหน้าจัดการเมนู
+         */
+        getAllMenuItems: function() {
+            return cache.menuItems.slice().sort(function(a, b) {
+                if (a.sort_group !== b.sort_group) return a.sort_group - b.sort_group;
+                return a.sort_order - b.sort_order;
+            });
+        },
+
+        /**
+         * อัพเดทเมนู (ราคา, ชื่อ, variants)
+         */
+        updateMenuItem: function(menuId, updates) {
+            var idx = cache.menuItems.findIndex(function(item) { return item.menu_id === menuId; });
+            if (idx < 0) return null;
+
+            for (var key in updates) {
+                cache.menuItems[idx][key] = updates[key];
+            }
+
+            // Save locally
+            Storage.set(KEYS.MENU_ITEMS, cache.menuItems);
+
+            // Sync to API
+            if (_isOnline) {
+                var payload = { menu_id: menuId };
+                for (var k in updates) { payload[k] = updates[k]; }
+                POS.ApiClient.postAsync('updateMenuItem', payload);
+            }
+
+            return cache.menuItems[idx];
+        },
+
+        /**
+         * เพิ่มเมนูใหม่
+         */
+        createMenuItem: function(itemData) {
+            var catGroupMap = {
+                'แนะนำ': { category: 'เมนูแนะนำ/เมนูพิเศษ', sort_group: 1 },
+                'ครัวอีสาน': { category: 'เมนูครัวอีสาน', sort_group: 2 },
+                'ครัวไทย': { category: 'เมนูครัวไทย', sort_group: 3 },
+                'ตามสั่ง': { category: 'อาหารตามสั่ง', sort_group: 4 },
+                'เครื่องดื่ม': { category: 'เครื่องดื่ม', sort_group: 99 }
+            };
+
+            var mapped = catGroupMap[itemData.category_app] || { category: itemData.category_app, sort_group: 50 };
+
+            // Auto sort_order
+            var sameCat = cache.menuItems.filter(function(it) { return it.category_app === itemData.category_app; });
+            var nextSort = sameCat.length + 1;
+
+            var newItem = {
+                menu_id: generateId('M'),
+                name_th: itemData.name_th,
+                category: mapped.category,
+                category_app: itemData.category_app,
+                sort_group: mapped.sort_group,
+                sort_order: nextSort,
+                base_price: Number(itemData.base_price) || 0,
+                price_json: itemData.price_json || '',
+                is_active: true
+            };
+
+            cache.menuItems.push(newItem);
+            Storage.set(KEYS.MENU_ITEMS, cache.menuItems);
+
+            // Sync to API
+            if (_isOnline) {
+                POS.ApiClient.post('createMenuItem', {
+                    name_th: newItem.name_th,
+                    category_app: newItem.category_app,
+                    base_price: newItem.base_price,
+                    price_json: newItem.price_json
+                }, function(err, serverItem) {
+                    if (!err && serverItem && serverItem.menu_id) {
+                        // Replace local ID with server ID
+                        var localIdx = cache.menuItems.findIndex(function(it) { return it.menu_id === newItem.menu_id; });
+                        if (localIdx >= 0) {
+                            cache.menuItems[localIdx].menu_id = serverItem.menu_id;
+                            Storage.set(KEYS.MENU_ITEMS, cache.menuItems);
+                        }
+                    }
+                });
+            }
+
+            return newItem;
+        },
+
         // ========== System Variables ==========
 
         getSysVar: function(key) {

@@ -9,6 +9,7 @@
     padding: var(--space-2xl);
     gap: var(--space-xl);
     background: var(--color-bg);
+    overflow-y: auto;
 }
 
 .role-screen__title {
@@ -117,4 +118,42 @@
 
 .status-dot--offline {
     background: var(--color-text-muted);
+}
+
+/* === Portrait / Small screen === */
+@media screen and (max-width: 600px), screen and (orientation: portrait) {
+    .role-screen {
+        padding: var(--space-lg);
+        justify-content: flex-start;
+        padding-top: var(--space-3xl);
+    }
+
+    .role-screen__title {
+        font-size: var(--font-size-xl);
+    }
+
+    .role-screen__subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    .role-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        max-width: 400px;
+    }
+
+    .role-card {
+        min-height: 120px;
+        padding: var(--space-xl) var(--space-lg);
+        flex-direction: row;
+        gap: var(--space-lg);
+    }
+
+    .role-card__icon {
+        font-size: 40px;
+    }
+
+    .role-card__label {
+        font-size: var(--font-size-lg);
+    }
 }

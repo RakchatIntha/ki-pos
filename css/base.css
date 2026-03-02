@@ -12,7 +12,6 @@ html {
     font-family: var(--font-family);
     color: var(--color-text);
     background-color: var(--color-bg);
-    overflow: hidden;
     height: 100%;
     width: 100%;
     -webkit-text-size-adjust: 100%;
@@ -23,6 +22,14 @@ body {
     width: 100%;
     overflow: hidden;
     line-height: 1.5;
+}
+
+/* Portrait-friendly: ปลดล็อค overflow เมื่อเป็นแนวตั้ง */
+@media screen and (orientation: portrait) {
+    html, body {
+        overflow: auto;
+        overflow-x: hidden;
+    }
 }
 
 /* === Typography === */

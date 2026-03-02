@@ -8,6 +8,9 @@
     background: var(--color-bg);
 }
 
+/* Portrait: app-shell pattern ยังคงใช้ 100vh — ลบ rotate-prompt แล้ว portrait ทำงานปกติ */
+/* แต่ละ screen จัดการ internal scroll เอง (overflow-y: auto) */
+
 /* === Header === */
 #app-header {
     height: var(--header-height);
@@ -143,15 +146,38 @@
     75% { transform: rotate(15deg); }
 }
 
+/* ปิด rotate-prompt — ให้ใช้งานได้ทั้งแนวตั้งและแนวนอน */
+.rotate-prompt {
+    display: none !important;
+}
+
+/* === Portrait Responsive — Header === */
 @media screen and (orientation: portrait) {
-    .rotate-prompt {
-        display: flex;
+    #app-header {
+        height: auto;
+        min-height: var(--header-height);
+        padding: var(--space-sm) var(--space-md);
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+    }
+
+    .app-title {
+        font-size: var(--font-size-lg);
     }
 }
 
-@media screen and (orientation: landscape) {
-    .rotate-prompt {
-        display: none;
+/* === Small screen (< 480px width) === */
+@media screen and (max-width: 480px) {
+    #app-header {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .app-title {
+        font-size: var(--font-size-base);
+    }
+
+    #app-header-info {
+        font-size: var(--font-size-xs);
     }
 }
 

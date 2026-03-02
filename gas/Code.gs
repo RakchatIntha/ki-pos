@@ -211,6 +211,12 @@ function doPost(e) {
       case 'toggleMenuItem':
         return successResponse(toggleMenuItem(body));
 
+      case 'updateMenuItem':
+        return successResponse(updateMenuItem(body));
+
+      case 'createMenuItem':
+        return successResponse(createMenuItem(body));
+
       default:
         return errorResponse('Unknown action: ' + action);
     }
@@ -623,6 +629,64 @@ function toggleMenuItem(body) {
 
   updateCell('MENU_ITEMS', rowNum, 'is_active', isActive);
   return { menu_id: menuId, is_active: isActive };
+}
+
+function updateMenuItem(body) {
+  var menuId = body.menu_id;
+  if (!menuId) return { error: 'menu_id required' };
+
+  var rowNum = findRowIndex('MENU_ITEMS', 'menu_id', menuId);
+  if (rowNum < 0) return { error: 'Menu item not found' };
+
+  var updates = {};
+  if (body.base_price !== undefined) updates.base_price = Number(body.base_price);
+  if (body.price_json !== undefined) updates.price_json = body.price_json;
+  if (body.name_th !== undefined) updates.name_th = body.name_th;
+
+  updateCells('MENU_ITEMS', rowNum, updates);
+  return { menu_id: menuId, updated: Object.keys(updates) };
+}
+
+function createMenuItem(body) {
+  var nameTh = body.name_th;
+  var categoryApp = body.category_app;
+  var basePrice = Number(body.base_price) || 0;
+  var priceJson = body.price_json || '';
+
+  if (!nameTh || !categoryApp) return { error: 'name_th and category_app required' };
+
+  // Map category_app -> category (full name) + sort_group
+  var catMap = {
+    'แนะนำ':     { category: 'เมนูแนะนำ/เมนูพิเศษ', sort_group: 1 },
+    'ครัวอีสาน':  { category: 'เมนูครัวอีสาน',        sort_group: 2 },
+    'ครัวไทย':    { category: 'เมนูครัวไทย',          sort_group: 3 },
+    'ตามสั่ง':    { category: 'อาหารตามสั่ง',         sort_group: 4 },
+    'เครื่องดื่ม': { category: 'เครื่องดื่ม',           sort_group: 99 }
+  };
+
+  var mapped = catMap[categoryApp] || { category: categoryApp, sort_group: 50 };
+
+  // Auto sort_order: count existing items in this category + 1
+  var allItems = sheetToArray('MENU_ITEMS');
+  var sameCat = allItems.filter(function(it) { return it.category_app === categoryApp; });
+  var nextSort = sameCat.length + 1;
+
+  var menuId = generateId('M');
+
+  var item = {
+    menu_id: menuId,
+    name_th: nameTh,
+    category: mapped.category,
+    category_app: categoryApp,
+    sort_group: mapped.sort_group,
+    sort_order: nextSort,
+    base_price: basePrice,
+    price_json: priceJson,
+    is_active: true
+  };
+
+  appendRow('MENU_ITEMS', item);
+  return item;
 }
 
 // ==================== HELPER: Recalc order totals ====================

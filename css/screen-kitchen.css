@@ -275,3 +275,22 @@
 .kitchen-serve-btn:active {
     background: var(--color-secondary-light);
 }
+
+/* === Portrait / Small screen === */
+@media screen and (max-width: 600px), screen and (orientation: portrait) {
+    .kitchen-toolbar {
+        padding: var(--space-sm) var(--space-md);
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+    }
+
+    .kitchen-toolbar__title {
+        font-size: var(--font-size-base);
+    }
+
+    .kitchen-orders {
+        padding: var(--space-md);
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+}

@@ -231,3 +231,51 @@
     font-size: var(--font-size-base);
     margin-top: auto;
 }
+
+/* === Portrait / Small screen === */
+@media screen and (max-width: 700px), screen and (orientation: portrait) {
+    .checkout-screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .checkout-summary {
+        border-right: none;
+        border-bottom: 2px solid var(--color-border);
+        padding: var(--space-md);
+        max-height: 40vh;
+    }
+
+    .checkout-summary__title {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--space-md);
+    }
+
+    .checkout-payment {
+        padding: var(--space-md);
+    }
+
+    .checkout-payment__title {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--space-md);
+    }
+
+    .checkout-grand-total {
+        padding: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .checkout-grand-total__value {
+        font-size: var(--font-size-2xl);
+    }
+
+    .checkout-methods {
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .method-btn {
+        min-height: 80px;
+        padding: var(--space-md);
+    }
+}
